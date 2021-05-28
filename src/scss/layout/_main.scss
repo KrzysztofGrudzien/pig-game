@@ -1,0 +1,129 @@
+.main {
+    background-color: $color-navy;
+    box-shadow: 0 0 3rem rgba(3, 3, 3, 0.2);
+    display: flex;
+    min-height: calc(100vh - 232px);
+    overflow: hidden;
+    position: relative;
+    width: 90%;
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    width: 50%;
+
+    &--active {
+        color: $color-white;
+    }
+
+    &__title {
+        display: flex;
+        flex-direction: column;
+        font-size: 4rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    &__login {
+        font-size: 1.4rem;
+        text-transform: capitalize;
+        margin-left: -15rem;
+    }
+
+    &__mark {
+        align-self: center;
+        background-color: $color-white;
+        border-radius: 50%;
+        display: inline-block;
+        height: 1rem;
+        margin-right: -20rem;
+        width: 1rem;
+
+        &--active {
+            background-color: $color-magenta;
+        }
+    }
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    &__score {
+        &--one {
+            font-size: 14rem;
+            font-weight: 100;
+        }
+    }
+}
+
+.progress {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    &__bar {
+        background-color: $color-white;
+        border: 1px solid $color-navy;
+        height: 6px;
+        margin: 0 1rem;
+        position: relative;
+        width: 22rem;
+
+        &--active {
+            border: 1px solid $color-white;
+        }
+    }
+
+    &__bar::after {
+        background-color: $color-magenta;
+        content: '';
+        height: 4px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 50%;
+    }
+}
+
+.current {
+    align-self: center;
+    border: 1px solid $color-navy;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    font-weight: 300;
+    font-size: 2rem;
+    justify-content: center;
+    height: 15rem;
+    width: 15rem;
+
+    &__score {
+        font-size: 6rem;
+    }
+
+    &--active {
+        border: 1px solid $color-white;
+    }
+}
+
+.cubes {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cube {
+    background-color: $color-white;
+    box-shadow: 0 0 3rem 0 rgba(0, 0, 0, 0.2);
+    height: 22rem;
+    margin: 2rem;
+    width: 22rem;
+}

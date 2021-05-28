@@ -1,0 +1,75 @@
+.panel {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &__score {
+        background-color: $color-magenta;
+        padding: 1rem 0;
+        width: 100%;
+    }
+
+    &__btn {
+        background-color: $color-white;
+        border: none;
+        border-radius: 0 0 3px 3px;
+        color: $color-magenta;
+        font-size: 2rem;
+        font-weight: 600;
+        padding: 1rem 3rem 1rem 2rem;
+        position: relative;
+        text-transform: uppercase;
+
+        &::after {
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid $color-magenta;
+            content: '';
+            height: 0;
+            position: absolute;
+            right: 1rem;
+            top: 2rem;
+            width: 0;
+        }
+    }
+}
+
+.scores {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+
+    &__wrapper {
+        display: flex;
+    }
+
+    &__btn {
+        background-color: $color-white;
+        border: none;
+        border-radius: 3px;
+        color: $color-magenta;
+        font-size: 2rem;
+        font-weight: 600;
+        padding: 1rem 2rem;
+        text-transform: uppercase;
+    }
+
+    &__level,
+    &__wins,
+    &__losses,
+    &__timer {
+        color: $color-white;
+        font-size: 2.4rem;
+        padding: 0 2rem;
+        text-transform: uppercase;
+    }
+
+    &__timer {
+        font-weight: 300;
+        font-size: 4rem;
+    }
+}

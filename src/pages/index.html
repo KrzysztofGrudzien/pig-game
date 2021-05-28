@@ -1,153 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WTF: Webpack starter kit</title>
-    <meta name="description" content="Your project description" />
-    <!-- Title -->
-    <meta property="og:title" content="" />
-    <!-- OPTIONAL description. 2-4 sentences. -->
-    <meta property="og:description" content="" />
-    <!-- full url with http(s) ie. https://maciejkorsan.github.io/my-repo/ -->
-    <meta property="og:url" content="" />
-    <!-- full url to the image with http(s) ie. https://maciejkorsan.github.io/my-repo/assets/img/fb.png. Facebook suggests at least 1200 x 630. -->
-    <meta
-      property="og:image"
-      content="https://maciejkorsan.com/wtf-gulp-starter/assets/img/cover.png"
-    />
-
-    <!-- uncomment the line below to enable PWA  -->
-    <!-- <link rel="manifest" href="manifest.json" /> -->
-
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="pwa/apple-icon-180.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="167x167"
-      href="pwa/apple-icon-167.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="pwa/apple-icon-152.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="120x120"
-      href="pwa/apple-icon-120.png"
-    />
-
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-2048-2732.png"
-      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-2732-2048.png"
-      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-1668-2388.png"
-      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-2388-1668.png"
-      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-1668-2224.png"
-      media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-2224-1668.png"
-      media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-1536-2048.png"
-      media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-2048-1536.png"
-      media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-1242-2688.png"
-      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-2688-1242.png"
-      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-1125-2436.png"
-      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-2436-1125.png"
-      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-828-1792.png"
-      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-1792-828.png"
-      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-1242-2208.png"
-      media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-2208-1242.png"
-      media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-750-1334.png"
-      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-1334-750.png"
-      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-640-1136.png"
-      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-    />
-    <link
-      rel="apple-touch-startup-image"
-      href="pwa/apple-splash-1136-640.png"
-      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-    />
-  </head>
-  <body>
-    <div class="hello">
-      <img class="hello__logo" src="../assets/img/logo.svg" alt="WTF " />
-      <span class="hello__circles"></span>
-    </div>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pig Game</title>
+        <meta name="description" content="Your project description" />
+        <!-- Title -->
+        <meta property="og:title" content="" />
+        <!-- OPTIONAL description. 2-4 sentences. -->
+        <meta property="og:description" content="" />
+        <!-- full url with http(s) ie. https://maciejkorsan.github.io/my-repo/ -->
+        <meta property="og:url" content="" />
+        <!-- full url to the image with http(s) ie. https://maciejkorsan.github.io/my-repo/assets/img/fb.png. Facebook suggests at least 1200 x 630. -->
+    </head>
+    <body>
+        <!-- <div class="login-panel-overlay-bg login-panel-overlay-bg--js"> -->
+        <!-- <div class="login-panel"> -->
+        <!-- <input -->
+        <!-- type="text" -->
+        <!-- placeholder="Your name or nickname" -->
+        <!-- class="login-panel__input login-panel__input--js" -->
+        <!-- /> -->
+        <!-- <button class="login-panel__btn login-panel__btn--js">let's play 🎮</button> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <div class="panel">
+            <div class="panel__score">
+                <div class="scores">
+                    <div class="scores__wrapper">
+                        <div class="scores__level">Level I</div>
+                        <div class="scores__wins">wins 10</div>
+                        <div class="scores__losses">losses 5</div>
+                    </div>
+                    <div class="scores__timer">01:30</div>
+                    <button class="scores__btn">reset scores</button>
+                </div>
+            </div>
+            <button class="panel__btn">Score Panel</button>
+        </div>
+        <div class="levels">
+            <span class="levels__text">levels</span>
+            <div class="levels__buttons">
+                <button class="levels__btn levels__btn--one levels__btn--active">1</button>
+                <button class="levels__btn levels__btn--two">2</button>
+                <button class="levels__btn levels__btn--three">3</button>
+            </div>
+        </div>
+        <header class="header">
+            <p class="header__login">Welcome, Krzysztof G.</p>
+            <h1 class="header__title">Pig Game</h1>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="" class="nav__link">About game</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main class="main">
+            <div class="cubes">
+                <div class="cube cube--one"></div>
+                <div class="cube cube--two"></div>
+            </div>
+            <div class="player player--one">
+                <div class="player__title player__title--one player--active">
+                    <span class="player__login player__login--one player--active">Krzysztof G.</span>
+                    <span class="player__mark player-mark--one player--active"></span>
+                    player 1
+                </div>
+                <div class="game">
+                    <div class="game__scores">
+                        <div class="game__score--one player--active">56</div>
+                        <div class="progress">
+                            <span class="progress__start progress__start--one player--active">0%</span>
+                            <div class="progress__bar progress__bar--active progress__bar--one player--active"></div>
+                            <span class="progress__end progress__end--one player--active">100%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="current current--active player--active">
+                    <div class="current__score current__score--one">14</div>
+                    <span class="current__text">current</span>
+                </div>
+            </div>
+            <div class="player player--two active">
+                <div class="player__title player__title--two">
+                    <span class="player__login player__login--two">Computer AI</span>
+                    <span class="player__mark player__mark--active player-mark--two"></span>
+                    player 2
+                </div>
+                <div class="game">
+                    <div class="game__scores">
+                        <div class="game__score--one">80</div>
+                        <div class="progress">
+                            <span class="progress__start progress__start--one">0%</span>
+                            <div class="progress__bar progress__bar--one"></div>
+                            <span class="progress__end progress__end--one">100%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="current">
+                    <div class="current__score current__score--one">25</div>
+                    <span class="current__text">current</span>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="btn btn--one">
+                    <img src="../assets/icons/refresh.svg" alt="" class="btn__image" />
+                </button>
+                <button class="btn btn--two"><img src="../assets/icons/hold.svg" alt="" class="btn__image" /></button>
+            </div>
+        </main>
+    </body>
 </html>
