@@ -1,13 +1,11 @@
-@import "~normalize.css";
-
-@import "_variables";
-@import "modules/hello.scss";
-
-body {
-  background: $wtf;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import '~normalize.css';
+@import '_variables';
+@import '_basic';
+@import 'helpers/classes.scss';
+@import 'layout/main.scss';
+@import 'layout/header.scss';
+@import 'components/button.scss';
+@import 'components/login.scss';
+@import 'components/panel.scss';
+@import 'components/levels.scss';

@@ -1,0 +1,56 @@
+.levels {
+    background-color: $color-magenta;
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__text {
+        color: $color-white;
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: 5px;
+        padding: 1rem;
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        writing-mode: vertical-rl;
+
+        &::after {
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid $color-white;
+            bottom: 2rem;
+            content: '';
+            height: 0;
+            position: absolute;
+            left: 1.7rem;
+            transform: rotate(90deg);
+            width: 0;
+        }
+    }
+
+    &__btn {
+        border: none;
+        border-radius: 50%;
+        border: 1px solid $color-white;
+        background: none;
+        color: $color-white;
+        font-size: 2rem;
+        height: 5rem;
+        margin: 1rem 0.5rem;
+        width: 5rem;
+
+        &--active {
+            background-color: $color-white;
+            color: $color-magenta;
+        }
+    }
+}

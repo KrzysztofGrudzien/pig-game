@@ -1,0 +1,41 @@
+.header {
+    align-items: center;
+    color: $color-white;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1em;
+    width: 90%;
+
+    &__login {
+        font-weight: 300;
+        font-size: 2rem;
+        padding-right: 0.5em;
+        width: 100%;
+    }
+
+    &__title {
+        font-weight: 800;
+        font-size: 3rem;
+        margin: 0;
+        letter-spacing: 3px;
+        text-align: center;
+        text-transform: uppercase;
+        width: 100%;
+    }
+
+    .nav {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        &__list {
+            list-style: none;
+        }
+
+        &__link {
+            color: $color-white;
+            font-weight: 600;
+            text-decoration: none;
+        }
+    }
+}

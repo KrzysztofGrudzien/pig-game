@@ -1,0 +1,25 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    align-items: center;
+    background-image: linear-gradient(to right bottom, $color-navy-dark, $color-navy);
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+    font-family: 'Lato', 'Arial', 'Roboto', 'Helvetica', sans-serif;
+    font-weight: 400;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+}
