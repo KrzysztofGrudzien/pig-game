@@ -5,3 +5,18 @@
 .active {
     background-color: $color-white;
 }
+
+.panel {
+    transition: margin-top 0.2s ease-out;
+    &--hide {
+        margin-top: -6.7rem;
+    }
+}
+
+.levels {
+    transition: right 0.2s ease-out;
+
+    &--hide {
+        right: -2.7rem;
+    }
+}
