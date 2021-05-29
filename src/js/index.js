@@ -1,4 +1,5 @@
 import '../scss/main.scss';
+//import randomNumbers from './helpers/randomNumbers';
 const panelScores = document.querySelector('.panel--js');
 const panelScoresBtn = document.querySelector('.panel__btn--js');
 const panelLevels = document.querySelector('.levels--js');
@@ -7,6 +8,9 @@ const loginPanelOverlay = document.querySelector('.login-panel-overlay-bg--js');
 const loginPanelBtn = document.querySelector('.login-panel__btn--js');
 const loginPanelInput = document.querySelector('.login-panel__input--js');
 const userNameText = document.querySelector('.header__login--js');
+const randomNumbersBtn = document.querySelector('.btn--one--js');
+const cubeImgOne = document.querySelector('.cube__img--one--js');
+const cubeImgTwo = document.querySelector('.cube__img--two--js');
 
 const game = {
     levels: [0, 1, 2],
@@ -25,6 +29,13 @@ const game = {
         wins: [],
         losses: [],
     },
+};
+
+const randomNumbers = () => {
+    const randomNumber = Math.trunc(Math.random() * 6) + 1;
+    const randomNumber2 = Math.trunc(Math.random() * 6) + 1;
+    cubeImgOne.src = `src/assets/icons/${randomNumber}.png`;
+    cubeImgTwo.src = `src/assets/icons/${randomNumber2}.png`;
 };
 
 const openPanelScores = () => {
@@ -61,3 +72,5 @@ window.addEventListener('keyup', e => {
 });
 
 loginPanelBtn.addEventListener('click', logIn);
+
+randomNumbersBtn.addEventListener('click', randomNumbers);
