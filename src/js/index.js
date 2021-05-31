@@ -36,11 +36,12 @@ const currentTextScorePlayerOne = document.querySelector('.current__text--one--j
 const currentTextScorePlayerTwo = document.querySelector('.current__text--two--js');
 const currentScorePlayerOne = document.querySelector('.current__score--one--js');
 const currentScorePlayerTwo = document.querySelector('.current__score--two--js');
+const progressBarLoaderPlayerOne = document.querySelector('.progress__bar--loader--one--js');
+const progressBarLoaderPlayerTwo = document.querySelector('.progress__bar--loader--two--js');
 
 const game = {
     levels: [0, 1, 2],
     time: 0,
-    isActive: true,
     player1: {
         totalScores: [],
         currentScores: 0,
@@ -68,6 +69,8 @@ const randomNumbers = () => {
         );
         game.player1.currentScores += randomNumber + randomNumber2;
         currentScoreOne.textContent = currentScore;
+        let percentageScore = (220 * game.player1.currentScores) / 100;
+        progressBarLoaderPlayerOne.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
     } else if (scoreTwo.classList.contains('player--active')) {
         game.player2.totalScores.push(randomNumber, randomNumber2);
         const currentScore = game.player2.totalScores.reduce(
@@ -75,6 +78,8 @@ const randomNumbers = () => {
         );
         game.player2.currentScores += randomNumber + randomNumber2;
         currentScoreTwo.textContent = currentScore;
+        let percentageScore = (220 * game.player2.currentScores) / 100;
+        progressBarLoaderPlayerTwo.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
     }
 };
 

@@ -81,16 +81,13 @@
         &--active {
             border: 1px solid $color-white;
         }
-    }
 
-    &__bar::after {
-        background-color: $color-magenta;
-        content: '';
-        height: 4px;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 50%;
+        &--loader--one,
+        &--loader--two {
+            background-color: $color-magenta;
+            height: 4px;
+            width: 0;
+        }
     }
 }
 
