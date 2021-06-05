@@ -1,5 +1,4 @@
 import '../scss/main.scss';
-//import randomNumbers from './helpers/randomNumbers';
 const panelScores = document.querySelector('.panel--js');
 const panelScoresBtn = document.querySelector('.panel__btn--js');
 const panelLevels = document.querySelector('.levels--js');
@@ -43,14 +42,16 @@ const game = {
     levels: [0, 1, 2],
     time: 0,
     player1: {
-        totalScores: [],
+        totalScores: 0,
         currentScores: 0,
+        percentageScore: 0,
         wins: [],
         losses: [],
     },
     player2: {
-        totalScores: [],
+        totalScores: 0,
         currentScores: 0,
+        percentageScore: 0,
         wins: [],
         losses: [],
     },
@@ -62,25 +63,48 @@ const randomNumbers = () => {
     cubeImgOne.src = `src/assets/icons/${randomNumber}.png`;
     cubeImgTwo.src = `src/assets/icons/${randomNumber2}.png`;
 
-    if (scoreOne.classList.contains('player--active')) {
-        game.player1.totalScores.push(randomNumber, randomNumber2);
-        const currentScore = game.player1.totalScores.reduce(
-            (accumulator, currentValue = 0) => accumulator + currentValue,
-        );
-        game.player1.currentScores += randomNumber + randomNumber2;
-        currentScoreOne.textContent = currentScore;
-        let percentageScore = (220 * game.player1.currentScores) / 100;
-        progressBarLoaderPlayerOne.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
-    } else if (scoreTwo.classList.contains('player--active')) {
-        game.player2.totalScores.push(randomNumber, randomNumber2);
-        const currentScore = game.player2.totalScores.reduce(
-            (accumulator, currentValue = 0) => accumulator + currentValue,
-        );
-        game.player2.currentScores += randomNumber + randomNumber2;
-        currentScoreTwo.textContent = currentScore;
-        let percentageScore = (220 * game.player2.currentScores) / 100;
-        progressBarLoaderPlayerTwo.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
+    if (randomNumber !== 1 && randomNumber2 !== 1) {
+        if (boardPlayerOne.classList.contains('active')) {
+            game.player1.currentScores += randomNumber + randomNumber2;
+            currentScoreOne.textContent = game.player1.currentScores;
+        } else if (boardPlayerTwo.classList.contains('active')) {
+            game.player2.currentScores += randomNumber + randomNumber2;
+            currentScoreTwo.textContent = game.player2.currentScores;
+        }
+    } else if (randomNumber === 1 || randomNumber2 === 1) {
+        if (boardPlayerOne.classList.contains('active')) {
+            currentScoreOne.textContent = 0;
+            game.player1.currentScores = 0;
+            game.player1.totalScores += 0;
+            scoreOne.textContent = game.player1.totalScores;
+            let percentageScore = (220 * game.player1.totalScores) / 100;
+            progressBarLoaderPlayerOne.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
+            setActivePlayer();
+        } else if (boardPlayerTwo.classList.contains('active')) {
+            currentScoreTwo.textContent = 0;
+            game.player2.currentScores = 0;
+            game.player2.totalScores += 0;
+            scoreTwo.textContent = game.player2.totalScores;
+            let percentageScore = (220 * game.player2.totalScores) / 100;
+            progressBarLoaderPlayerTwo.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
+            setActivePlayer();
+        }
     }
+};
+
+const holdScore = () => {
+    game.player1.totalScores += game.player1.currentScores;
+    game.player2.totalScores += game.player2.currentScores;
+    scoreOne.textContent = game.player1.totalScores;
+    scoreTwo.textContent = game.player2.totalScores;
+    game.player1.currentScores = 0;
+    game.player2.currentScores = 0;
+    currentScoreOne.textContent = 0;
+    currentScoreTwo.textContent = 0;
+    let percentageScorePlayer1 = (220 * game.player1.totalScores) / 100;
+    progressBarLoaderPlayerOne.style.width = `${percentageScorePlayer1 <= 220 ? percentageScorePlayer1 : 218}px`;
+    let percentageScorePlayer2 = (220 * game.player2.totalScores) / 100;
+    progressBarLoaderPlayerTwo.style.width = `${percentageScorePlayer2 <= 220 ? percentageScorePlayer2 : 218}px`;
 };
 
 const openPanelScores = () => {
@@ -122,15 +146,11 @@ loginPanelBtn.addEventListener('click', logIn);
 
 randomNumbersBtn.addEventListener('click', randomNumbers);
 
-holdBtn.addEventListener('click', () => {
+holdBtn.addEventListener('click', holdScore);
+
+const setActivePlayer = () => {
     scoreOne.classList.toggle('player--active');
     scoreTwo.classList.toggle('player--active');
-    scoreOne.textContent = game.player1.currentScores;
-    game.player1.totalScores = [];
-    currentScoreOne.textContent = 0;
-    scoreTwo.textContent = game.player2.currentScores;
-    game.player2.totalScores = [];
-    currentScoreTwo.textContent = 0;
     boardPlayerOne.classList.toggle('active');
     boardPlayerTwo.classList.toggle('active');
     titlePlayerOne.classList.toggle('player--active');
@@ -151,4 +171,6 @@ holdBtn.addEventListener('click', () => {
     currentTextScorePlayerTwo.classList.toggle('player--active');
     currentScorePlayerOne.classList.toggle('player--active');
     currentScorePlayerTwo.classList.toggle('player--active');
-});
+};
+
+holdBtn.addEventListener('click', setActivePlayer);
