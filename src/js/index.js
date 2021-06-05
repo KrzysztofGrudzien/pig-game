@@ -43,6 +43,7 @@ const winsScores = document.querySelector('.scores__wins--js');
 const lossesScores = document.querySelector('.scores__losses--js');
 const btnNewGame = document.querySelector('.new-game--js');
 const buttons = document.querySelector('.buttons--js');
+const btnResetGame = document.querySelector('.scores__btn--js');
 
 const game = {
     levels: [0, 1, 2],
@@ -145,6 +146,11 @@ const startNewGame = () => {
     progressBarLoaderPlayerTwo.style.width = '0px';
 };
 
+const resetGame = () => {
+    document.location.reload(true);
+};
+
+btnResetGame.addEventListener('click', resetGame);
 btnNewGame.addEventListener('click', startNewGame);
 panelScoresBtn.addEventListener('click', openPanelScores);
 panelLevelsBtn.addEventListener('click', openPanelLevels);
