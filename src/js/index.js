@@ -37,6 +37,10 @@ const currentScorePlayerOne = document.querySelector('.current__score--one--js')
 const currentScorePlayerTwo = document.querySelector('.current__score--two--js');
 const progressBarLoaderPlayerOne = document.querySelector('.progress__bar--loader--one--js');
 const progressBarLoaderPlayerTwo = document.querySelector('.progress__bar--loader--two--js');
+const titleWin = document.querySelector('.win--js');
+const levelScores = document.querySelector('.scores__level--js');
+const winsScores = document.querySelector('.scores__wins--js');
+const lossesScores = document.querySelector('.scores__losses--js');
 
 const game = {
     levels: [0, 1, 2],
@@ -44,16 +48,12 @@ const game = {
     player1: {
         totalScores: 0,
         currentScores: 0,
-        percentageScore: 0,
-        wins: [],
-        losses: [],
+        wins: 0,
     },
     player2: {
         totalScores: 0,
         currentScores: 0,
-        percentageScore: 0,
-        wins: [],
-        losses: [],
+        wins: 0,
     },
 };
 
@@ -105,6 +105,17 @@ const holdScore = () => {
     progressBarLoaderPlayerOne.style.width = `${percentageScorePlayer1 <= 220 ? percentageScorePlayer1 : 218}px`;
     let percentageScorePlayer2 = (220 * game.player2.totalScores) / 100;
     progressBarLoaderPlayerTwo.style.width = `${percentageScorePlayer2 <= 220 ? percentageScorePlayer2 : 218}px`;
+    if (game.player1.totalScores >= 100) {
+        titleWin.classList.remove('hide');
+        titleWin.textContent = 'YOU WIN!!!';
+        game.player1.wins += 1;
+        winsScores.textContent = `wins: ${game.player1.wins}`;
+    } else if (game.player2.totalScores >= 100) {
+        titleWin.classList.remove('hide');
+        titleWin.textContent = 'YOU LOST!!!';
+        game.player2.wins += 1;
+        lossesScores.textContent = `losses: ${game.player2.wins}`;
+    }
 };
 
 const openPanelScores = () => {

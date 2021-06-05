@@ -131,3 +131,14 @@
     margin: 2rem;
     width: 22rem;
 }
+
+.win {
+    color: $color-magenta;
+    font-size: 8rem;
+    position: absolute;
+    left: 50%;
+    letter-spacing: 2px;
+    top: 27%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.35);
+}
