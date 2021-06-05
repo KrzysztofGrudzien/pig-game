@@ -142,3 +142,31 @@
     transform: translate(-50%, -50%);
     text-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.35);
 }
+
+.new-game {
+    align-items: center;
+    border: none;
+    background: none;
+    color: $color-magenta;
+    cursor: pointer;
+    display: flex;
+    font-size: 2.4rem;
+    font-weight: 300;
+    left: 54%;
+    position: absolute;
+    top: 17%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+
+    &__icon {
+        border-radius: 50%;
+        background-color: $color-magenta;
+        color: $color-white;
+        font-size: 4rem;
+        height: 4rem;
+        line-height: 4rem;
+        margin-right: 1rem;
+        text-align: center;
+        width: 4rem;
+    }
+}

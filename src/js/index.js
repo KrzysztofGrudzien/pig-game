@@ -41,6 +41,8 @@ const titleWin = document.querySelector('.win--js');
 const levelScores = document.querySelector('.scores__level--js');
 const winsScores = document.querySelector('.scores__wins--js');
 const lossesScores = document.querySelector('.scores__losses--js');
+const btnNewGame = document.querySelector('.new-game--js');
+const buttons = document.querySelector('.buttons--js');
 
 const game = {
     levels: [0, 1, 2],
@@ -110,11 +112,15 @@ const holdScore = () => {
         titleWin.textContent = 'YOU WIN!!!';
         game.player1.wins += 1;
         winsScores.textContent = `wins: ${game.player1.wins}`;
+        btnNewGame.classList.remove('hide');
+        buttons.classList.add('hide');
     } else if (game.player2.totalScores >= 100) {
         titleWin.classList.remove('hide');
         titleWin.textContent = 'YOU LOST!!!';
         game.player2.wins += 1;
         lossesScores.textContent = `losses: ${game.player2.wins}`;
+        btnNewGame.classList.remove('hide');
+        buttons.classList.add('hide');
     }
 };
 
@@ -126,6 +132,20 @@ const openPanelLevels = () => {
     panelLevels.classList.toggle('levels--hide');
 };
 
+const startNewGame = () => {
+    titleWin.classList.add('hide');
+    btnNewGame.classList.add('hide');
+    buttons.classList.remove('hide');
+    buttons.classList.remove('hide');
+    game.player1.totalScores = 0;
+    game.player2.totalScores = 0;
+    scoreOne.textContent = 0;
+    scoreTwo.textContent = 0;
+    progressBarLoaderPlayerOne.style.width = '0px';
+    progressBarLoaderPlayerTwo.style.width = '0px';
+};
+
+btnNewGame.addEventListener('click', startNewGame);
 panelScoresBtn.addEventListener('click', openPanelScores);
 panelLevelsBtn.addEventListener('click', openPanelLevels);
 
