@@ -144,6 +144,8 @@ const startNewGame = () => {
     scoreTwo.textContent = 0;
     progressBarLoaderPlayerOne.style.width = '0px';
     progressBarLoaderPlayerTwo.style.width = '0px';
+    cubeImgOne.src = `src/assets/icons/${0}.png`;
+    cubeImgTwo.src = `src/assets/icons/${0}.png`;
 };
 
 const resetGame = () => {
