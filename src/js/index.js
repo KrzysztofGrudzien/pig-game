@@ -170,14 +170,28 @@ const logIn = () => {
 };
 
 loginPanelInput.addEventListener('keyup', e => {
-    if (e.keyCode === 13 || e.keyCode === 27) {
+    if (e.key === 'Enter' || e.key === 'Escape') {
         logIn();
     }
 });
 
 window.addEventListener('keyup', e => {
-    if (e.keyCode === 13 || e.keyCode === 27) {
+    if (e.key === 'Enter' || e.key === 'Escape') {
         logIn();
+        startNewGame();
+    }
+});
+
+window.addEventListener('keyup', e => {
+    if (e.key === 'ArrowUp' || e.key === 'w') {
+        randomNumbers();
+    }
+});
+
+window.addEventListener('keyup', e => {
+    if (e.key === 'ArrowDown' || e.key === 's') {
+        holdScore();
+        setActivePlayer();
     }
 });
 
