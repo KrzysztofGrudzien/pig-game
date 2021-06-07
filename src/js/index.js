@@ -44,10 +44,11 @@ const lossesScores = document.querySelector('.scores__losses--js');
 const btnNewGame = document.querySelector('.new-game--js');
 const buttons = document.querySelector('.buttons--js');
 const btnResetGame = document.querySelector('.scores__btn--js');
+const timerScores = document.querySelector('.scores__timer--js');
 
 const game = {
     levels: [0, 1, 2],
-    time: 0,
+    time: 90,
     player1: {
         totalScores: 0,
         currentScores: 0,
@@ -59,6 +60,22 @@ const game = {
         wins: 0,
     },
 };
+
+const countDown = () => {
+    if (game.time <= 0) {
+        clearInterval(idTimer);
+        timerScores.textContent = `00:00`;
+    } else {
+        let time = game.time--;
+        let minutes = parseInt(time / 60);
+        let seconds = parseInt(time % 60);
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        timerScores.textContent = `${minutes}:${seconds}`;
+    }
+};
+
+let idTimer = setInterval(countDown, 1000);
 
 const randomNumbers = () => {
     const randomNumber = Math.trunc(Math.random() * 6) + 1;
@@ -140,6 +157,8 @@ const startNewGame = () => {
     buttons.classList.remove('hide');
     game.player1.totalScores = 0;
     game.player2.totalScores = 0;
+    currentScoreOne.textContent = 0;
+    currentScoreTwo.textContent = 0;
     scoreOne.textContent = 0;
     scoreTwo.textContent = 0;
     progressBarLoaderPlayerOne.style.width = '0px';
