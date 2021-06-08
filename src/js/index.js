@@ -44,10 +44,18 @@ const lossesScores = document.querySelector('.scores__losses--js');
 const btnNewGame = document.querySelector('.new-game--js');
 const buttons = document.querySelector('.buttons--js');
 const btnResetGame = document.querySelector('.scores__btn--js');
+const timerScores = document.querySelector('.scores__timer--js');
+const btnLevelOne = document.querySelector('.levels__btn--one--js');
+const btnLevelTwo = document.querySelector('.levels__btn--two--js');
+const btnLevelThree = document.querySelector('.levels__btn--three--js');
+const btnsLevels = document.querySelectorAll('.levels__btn');
 
 const game = {
-    levels: [0, 1, 2],
-    time: 0,
+    level: 1,
+    time: 60 * 10,
+    getRandomTime(min, max) {
+        return Math.trunc(Math.random() * (max - min + 1) + min);
+    },
     player1: {
         totalScores: 0,
         currentScores: 0,
@@ -59,6 +67,60 @@ const game = {
         wins: 0,
     },
 };
+
+btnLevelTwo.addEventListener('click', () => {
+    btnLevelOne.classList.remove('levels__btn--active');
+    btnLevelTwo.classList.add('levels__btn--active');
+    btnLevelThree.classList.remove('levels__btn--active');
+    const countDown = () => {
+        if (game.time <= 0) {
+            clearInterval(idTimer);
+            timerScores.textContent = `00:00`;
+        } else {
+            let time = game.time--;
+            let minutes = parseInt(time / 60);
+            let seconds = parseInt(time % 60);
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            timerScores.textContent = `${minutes}:${seconds}`;
+        }
+    };
+
+    let idTimer = setInterval(countDown, 1000);
+    btnsLevels.forEach(btn => {
+        btn.setAttribute('disabled', true);
+        btn.style.borderColor = '#32415b';
+    });
+    levelScores.textContent = `level: ${game.level + 1}`;
+});
+
+btnLevelThree.addEventListener('click', () => {
+    btnLevelOne.classList.remove('levels__btn--active');
+    btnLevelTwo.classList.remove('levels__btn--active');
+    btnLevelThree.classList.add('levels__btn--active');
+    let randomTime = game.getRandomTime(600, 1000);
+    const countDown = () => {
+        if (randomTime <= 0) {
+            clearInterval(idTimer);
+            timerScores.textContent = `00:00`;
+        } else {
+            let time = randomTime--;
+            let minutes = parseInt(time / 60);
+            let seconds = parseInt(time % 60);
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            timerScores.textContent = `?? : ??`;
+        }
+    };
+
+    let idTimer = setInterval(countDown, 1000);
+    btnsLevels.forEach(btn => {
+        btn.setAttribute('disabled', true);
+        btn.style.borderColor = '#32415b';
+    });
+
+    levelScores.textContent = `level: ${game.level + 2}`;
+});
 
 const randomNumbers = () => {
     const randomNumber = Math.trunc(Math.random() * 6) + 1;
@@ -140,6 +202,8 @@ const startNewGame = () => {
     buttons.classList.remove('hide');
     game.player1.totalScores = 0;
     game.player2.totalScores = 0;
+    currentScoreOne.textContent = 0;
+    currentScoreTwo.textContent = 0;
     scoreOne.textContent = 0;
     scoreTwo.textContent = 0;
     progressBarLoaderPlayerOne.style.width = '0px';
@@ -183,13 +247,13 @@ window.addEventListener('keyup', e => {
 });
 
 window.addEventListener('keyup', e => {
-    if (e.key === 'ArrowUp' || e.key === 'w') {
+    if (e.key === 'ArrowUp') {
         randomNumbers();
     }
 });
 
 window.addEventListener('keyup', e => {
-    if (e.key === 'ArrowDown' || e.key === 's') {
+    if (e.key === 'ArrowDown') {
         holdScore();
         setActivePlayer();
     }
