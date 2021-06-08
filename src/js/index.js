@@ -177,6 +177,10 @@ const holdScore = () => {
         winsScores.textContent = `wins: ${game.player1.wins}`;
         btnNewGame.classList.remove('hide');
         buttons.classList.add('hide');
+        if (game.player1.wins >= 10) {
+            titleWin.classList.remove('hide');
+            titleWin.textContent = 'YOU WIN EVERYTHING !!!';
+        }
     } else if (game.player2.totalScores >= 100) {
         titleWin.classList.remove('hide');
         titleWin.textContent = 'YOU LOST!!!';
@@ -184,6 +188,10 @@ const holdScore = () => {
         lossesScores.textContent = `losses: ${game.player2.wins}`;
         btnNewGame.classList.remove('hide');
         buttons.classList.add('hide');
+        if (game.player2.wins >= 10) {
+            titleWin.classList.remove('hide');
+            titleWin.textContent = 'YOU LOST EVERYTHING !!!';
+        }
     }
 };
 
