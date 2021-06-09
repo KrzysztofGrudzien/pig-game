@@ -170,3 +170,10 @@
         width: 4rem;
     }
 }
+
+canvas {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
