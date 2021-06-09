@@ -1,4 +1,5 @@
 import '../scss/main.scss';
+import confetti from 'canvas-confetti';
 const panelScores = document.querySelector('.panel--js');
 const panelScoresBtn = document.querySelector('.panel__btn--js');
 const panelLevels = document.querySelector('.levels--js');
@@ -171,20 +172,137 @@ const holdScore = () => {
     let percentageScorePlayer2 = (220 * game.player2.totalScores) / 100;
     progressBarLoaderPlayerTwo.style.width = `${percentageScorePlayer2 <= 220 ? percentageScorePlayer2 : 218}px`;
     if (game.player1.totalScores >= 100) {
+        createConfettiAnimationBasic();
         titleWin.classList.remove('hide');
         titleWin.textContent = 'YOU WIN!!!';
         game.player1.wins += 1;
         winsScores.textContent = `wins: ${game.player1.wins}`;
         btnNewGame.classList.remove('hide');
         buttons.classList.add('hide');
+        if (game.player1.wins >= 10) {
+            titleWin.classList.remove('hide');
+            titleWin.textContent = `YOU'RE THE BEST !!!`;
+            createConfettiAnimationSchool();
+            // btnNewGame.classList.remove('hide');
+            // btnNewGame.textContent = `New Match`;
+            btnNewGame.classList.add('hide');
+            btnResetGame.textContent = 'New Match';
+            buttons.classList.add('hide');
+            window.addEventListener('keyup', e => {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+                    resetGame();
+                }
+            });
+        }
     } else if (game.player2.totalScores >= 100) {
+        createConfettiAnimationBasic();
         titleWin.classList.remove('hide');
         titleWin.textContent = 'YOU LOST!!!';
         game.player2.wins += 1;
         lossesScores.textContent = `losses: ${game.player2.wins}`;
         btnNewGame.classList.remove('hide');
         buttons.classList.add('hide');
+        if (game.player2.wins >= 10) {
+            titleWin.classList.remove('hide');
+            titleWin.textContent = `YOU'RE LOOSER !!!`;
+            createConfettiAnimationSchool();
+            // btnNewGame.classList.remove('hide');
+            // btnNewGame.textContent = `New Match`;
+            btnNewGame.classList.add('hide');
+            btnResetGame.textContent = 'New Match';
+            buttons.classList.add('hide');
+            window.addEventListener('keyup', e => {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+                    resetGame();
+                }
+            });
+        }
     }
+
+    if (game.player1.wins > 0 || game.player2.wins > 0) {
+        btnsLevels.forEach(btn => {
+            btn.setAttribute('disabled', true);
+            btn.style.borderColor = '#32415b';
+        });
+        btnLevelOne.classList.add('levels__btn--active');
+        btnLevelTwo.classList.remove('levels__btn--active');
+        btnLevelThree.classList.remove('levels__btn--active');
+    }
+};
+
+const createConfettiAnimationSchool = () => {
+    const canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
+    const duration = 15 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function () {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(
+            Object.assign({}, defaults, {
+                particleCount,
+                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+            }),
+        );
+        confetti(
+            Object.assign({}, defaults, {
+                particleCount,
+                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+            }),
+        );
+    }, 250);
+    setTimeout(() => {
+        canvas.remove();
+    }, 1000);
+};
+
+const createConfettiAnimationBasic = () => {
+    const count = 200;
+    const defaults = {
+        origin: { y: 0.7 },
+    };
+
+    function fire(particleRatio, opts) {
+        confetti(
+            Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio),
+            }),
+        );
+    }
+
+    fire(0.25, {
+        spread: 26,
+        startVelocity: 55,
+    });
+    fire(0.2, {
+        spread: 60,
+    });
+    fire(0.35, {
+        spread: 100,
+        decay: 0.91,
+        scalar: 0.8,
+    });
+    fire(0.1, {
+        spread: 120,
+        startVelocity: 25,
+        decay: 0.92,
+        scalar: 1.2,
+    });
+    fire(0.1, {
+        spread: 120,
+        startVelocity: 45,
+    });
 };
 
 const openPanelScores = () => {
