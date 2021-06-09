@@ -49,11 +49,11 @@ const timerScores = document.querySelector('.scores__timer--js');
 const btnLevelOne = document.querySelector('.levels__btn--one--js');
 const btnLevelTwo = document.querySelector('.levels__btn--two--js');
 const btnLevelThree = document.querySelector('.levels__btn--three--js');
-const btnsLevels = document.querySelectorAll('.levels__btn');
+const btnsLevels = document.querySelectorAll('.levels__btn--js');
 
 const game = {
     level: 1,
-    time: 60 * 10,
+    time: 60 * 5,
     getRandomTime(min, max) {
         return Math.trunc(Math.random() * (max - min + 1) + min);
     },
@@ -77,6 +77,42 @@ btnLevelTwo.addEventListener('click', () => {
         if (game.time <= 0) {
             clearInterval(idTimer);
             timerScores.textContent = `00:00`;
+            if (game.player1.wins > game.player2.wins) {
+                titleWin.classList.remove('hide');
+                titleWin.textContent = `YOU'RE THE BEST !!!`;
+                createConfettiAnimationSchool();
+                btnNewGame.classList.add('hide');
+                btnResetGame.textContent = 'New Match';
+                buttons.classList.add('hide');
+                window.addEventListener('keyup', e => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+                        resetGame();
+                    }
+                });
+            } else if (game.player1.wins < game.player2.wins) {
+                titleWin.classList.remove('hide');
+                titleWin.textContent = `YOU'RE LOOSER !!!`;
+                createConfettiAnimationSchool();
+                btnNewGame.classList.add('hide');
+                btnResetGame.textContent = 'New Match';
+                buttons.classList.add('hide');
+                window.addEventListener('keyup', e => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+                        resetGame();
+                    }
+                });
+            } else {
+                titleWin.classList.remove('hide');
+                titleWin.textContent = `YOU DRAW !!!`;
+                btnNewGame.classList.add('hide');
+                btnResetGame.textContent = 'New Match';
+                buttons.classList.add('hide');
+                window.addEventListener('keyup', e => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+                        resetGame();
+                    }
+                });
+            }
         } else {
             let time = game.time--;
             let minutes = parseInt(time / 60);
@@ -99,18 +135,55 @@ btnLevelThree.addEventListener('click', () => {
     btnLevelOne.classList.remove('levels__btn--active');
     btnLevelTwo.classList.remove('levels__btn--active');
     btnLevelThree.classList.add('levels__btn--active');
-    let randomTime = game.getRandomTime(600, 1000);
+    let randomTime = game.getRandomTime(60, 120);
     const countDown = () => {
         if (randomTime <= 0) {
             clearInterval(idTimer);
             timerScores.textContent = `00:00`;
+            if (game.player1.wins > game.player2.wins) {
+                titleWin.classList.remove('hide');
+                titleWin.textContent = `YOU'RE THE BEST !!!`;
+                createConfettiAnimationSchool();
+                btnNewGame.classList.add('hide');
+                btnResetGame.textContent = 'New Match';
+                buttons.classList.add('hide');
+                window.addEventListener('keyup', e => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+                        resetGame();
+                    }
+                });
+            } else if (game.player1.wins < game.player2.wins) {
+                titleWin.classList.remove('hide');
+                titleWin.textContent = `YOU'RE LOOSER !!!`;
+                createConfettiAnimationSchool();
+                btnNewGame.classList.add('hide');
+                btnResetGame.textContent = 'New Match';
+                buttons.classList.add('hide');
+                window.addEventListener('keyup', e => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+                        resetGame();
+                    }
+                });
+            } else {
+                titleWin.classList.remove('hide');
+                titleWin.textContent = `YOU DRAW !!!`;
+                btnNewGame.classList.add('hide');
+                btnResetGame.textContent = 'New Match';
+                buttons.classList.add('hide');
+                window.addEventListener('keyup', e => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+                        resetGame();
+                    }
+                });
+            }
         } else {
             let time = randomTime--;
             let minutes = parseInt(time / 60);
             let seconds = parseInt(time % 60);
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
-            timerScores.textContent = `?? : ??`;
+            //timerScores.textContent = `?? : ??`;
+            timerScores.textContent = `${minutes} : ${seconds}`;
         }
     };
 
@@ -183,8 +256,6 @@ const holdScore = () => {
             titleWin.classList.remove('hide');
             titleWin.textContent = `YOU'RE THE BEST !!!`;
             createConfettiAnimationSchool();
-            // btnNewGame.classList.remove('hide');
-            // btnNewGame.textContent = `New Match`;
             btnNewGame.classList.add('hide');
             btnResetGame.textContent = 'New Match';
             buttons.classList.add('hide');
@@ -206,8 +277,6 @@ const holdScore = () => {
             titleWin.classList.remove('hide');
             titleWin.textContent = `YOU'RE LOOSER !!!`;
             createConfettiAnimationSchool();
-            // btnNewGame.classList.remove('hide');
-            // btnNewGame.textContent = `New Match`;
             btnNewGame.classList.add('hide');
             btnResetGame.textContent = 'New Match';
             buttons.classList.add('hide');
