@@ -77,6 +77,19 @@ let time = game.time,
     player1CurrentScore = game.player1.currentScore,
     player2CurrentScore = game.player2.currentScore;
 
+const newGameContent = info => {
+    titleWin.classList.remove('hide');
+    titleWin.textContent = `${info}`;
+    btnNewGame.classList.add('hide');
+    btnResetGame.textContent = 'New Match';
+    buttons.classList.add('hide');
+    window.addEventListener('keyup', e => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+            resetGame();
+        }
+    });
+};
+
 btnLevelTwo.addEventListener('click', () => {
     btnLevelOne.classList.remove('levels__btn--active');
     btnLevelTwo.classList.add('levels__btn--active');
@@ -87,40 +100,16 @@ btnLevelTwo.addEventListener('click', () => {
             clearInterval(idTimer);
             timerScores.textContent = `00:00`;
             if (player1Wins > player2Wins) {
-                titleWin.classList.remove('hide');
-                titleWin.textContent = `YOU'RE THE BEST !!!`;
+                let info = `YOU'RE THE BEST !!!`;
                 createConfettiAnimationFireworks();
-                btnNewGame.classList.add('hide');
-                btnResetGame.textContent = 'New Match';
-                buttons.classList.add('hide');
-                window.addEventListener('keyup', e => {
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-                        resetGame();
-                    }
-                });
+                newGameContent(info);
             } else if (player1Wins < player2Wins) {
-                titleWin.classList.remove('hide');
-                titleWin.textContent = `YOU'RE LOOSER !!!`;
+                let info = `YOU'RE LOOSER !!!`;
                 createConfettiAnimationFireworks();
-                btnNewGame.classList.add('hide');
-                btnResetGame.textContent = 'New Match';
-                buttons.classList.add('hide');
-                window.addEventListener('keyup', e => {
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-                        resetGame();
-                    }
-                });
+                newGameContent(info);
             } else {
-                titleWin.classList.remove('hide');
-                titleWin.textContent = `YOU DRAW !!!`;
-                btnNewGame.classList.add('hide');
-                btnResetGame.textContent = 'New Match';
-                buttons.classList.add('hide');
-                window.addEventListener('keyup', e => {
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-                        resetGame();
-                    }
-                });
+                let info = `YOU DRAW !!!`;
+                newGameContent(info);
             }
         } else {
             let timeGame = time--;
@@ -145,45 +134,22 @@ btnLevelThree.addEventListener('click', () => {
     btnLevelTwo.classList.remove('levels__btn--active');
     btnLevelThree.classList.add('levels__btn--active');
     let randomTime = game.randomTime(60, 120);
+
     const countDown = () => {
         if (randomTime <= 0) {
             clearInterval(idTimer);
             timerScores.textContent = `00:00`;
             if (player1Wins > player2Wins) {
-                titleWin.classList.remove('hide');
-                titleWin.textContent = `YOU'RE THE BEST !!!`;
+                let info = `YOU'RE THE BEST !!!`;
                 createConfettiAnimationFireworks();
-                btnNewGame.classList.add('hide');
-                btnResetGame.textContent = 'New Match';
-                buttons.classList.add('hide');
-                window.addEventListener('keyup', e => {
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-                        resetGame();
-                    }
-                });
+                newGameContent(info);
             } else if (player1Wins < player2Wins) {
-                titleWin.classList.remove('hide');
-                titleWin.textContent = `YOU'RE LOOSER !!!`;
+                let info = `YOU'RE LOOSER !!!`;
                 createConfettiAnimationFireworks();
-                btnNewGame.classList.add('hide');
-                btnResetGame.textContent = 'New Match';
-                buttons.classList.add('hide');
-                window.addEventListener('keyup', e => {
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-                        resetGame();
-                    }
-                });
+                newGameContent(info);
             } else {
-                titleWin.classList.remove('hide');
-                titleWin.textContent = `YOU DRAW !!!`;
-                btnNewGame.classList.add('hide');
-                btnResetGame.textContent = 'New Match';
-                buttons.classList.add('hide');
-                window.addEventListener('keyup', e => {
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-                        resetGame();
-                    }
-                });
+                let info = `YOU DRAW !!!`;
+                newGameContent(info);
             }
         } else {
             let time = randomTime--;
