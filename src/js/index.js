@@ -53,34 +53,44 @@ const btnsLevels = document.querySelectorAll('.levels__btn--js');
 
 const game = {
     level: 1,
-    time: 60 * 5,
+    time: 6 * 5,
     getRandomTime(min, max) {
         return Math.trunc(Math.random() * (max - min + 1) + min);
     },
     player1: {
-        totalScores: 0,
-        currentScores: 0,
+        totalScore: 0,
+        currentScore: 0,
         wins: 0,
     },
     player2: {
-        totalScores: 0,
-        currentScores: 0,
+        totalScore: 0,
+        currentScore: 0,
         wins: 0,
     },
 };
+
+let time = game.time,
+    level = game.level,
+    player1Wins = game.player1.wins,
+    player2Wins = game.player2.wins,
+    player1TotalScore = game.player1.totalScore,
+    player2TotalScore = game.player2.totalScore,
+    player1CurrentScore = game.player1.currentScore,
+    player2CurrentScore = game.player2.currentScore;
 
 btnLevelTwo.addEventListener('click', () => {
     btnLevelOne.classList.remove('levels__btn--active');
     btnLevelTwo.classList.add('levels__btn--active');
     btnLevelThree.classList.remove('levels__btn--active');
+
     const countDown = () => {
-        if (game.time <= 0) {
+        if (time <= 0) {
             clearInterval(idTimer);
             timerScores.textContent = `00:00`;
-            if (game.player1.wins > game.player2.wins) {
+            if (player1Wins > player2Wins) {
                 titleWin.classList.remove('hide');
                 titleWin.textContent = `YOU'RE THE BEST !!!`;
-                createConfettiAnimationSchool();
+                createConfettiAnimationFireworks();
                 btnNewGame.classList.add('hide');
                 btnResetGame.textContent = 'New Match';
                 buttons.classList.add('hide');
@@ -89,10 +99,10 @@ btnLevelTwo.addEventListener('click', () => {
                         resetGame();
                     }
                 });
-            } else if (game.player1.wins < game.player2.wins) {
+            } else if (player1Wins < player2Wins) {
                 titleWin.classList.remove('hide');
                 titleWin.textContent = `YOU'RE LOOSER !!!`;
-                createConfettiAnimationSchool();
+                createConfettiAnimationFireworks();
                 btnNewGame.classList.add('hide');
                 btnResetGame.textContent = 'New Match';
                 buttons.classList.add('hide');
@@ -114,9 +124,9 @@ btnLevelTwo.addEventListener('click', () => {
                 });
             }
         } else {
-            let time = game.time--;
-            let minutes = parseInt(time / 60);
-            let seconds = parseInt(time % 60);
+            let timeGame = time--;
+            let minutes = parseInt(timeGame / 60);
+            let seconds = parseInt(timeGame % 60);
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             timerScores.textContent = `${minutes}:${seconds}`;
@@ -128,7 +138,7 @@ btnLevelTwo.addEventListener('click', () => {
         btn.setAttribute('disabled', true);
         btn.style.borderColor = '#32415b';
     });
-    levelScores.textContent = `level: ${game.level + 1}`;
+    levelScores.textContent = `level: ${level + 1}`;
 });
 
 btnLevelThree.addEventListener('click', () => {
@@ -140,10 +150,10 @@ btnLevelThree.addEventListener('click', () => {
         if (randomTime <= 0) {
             clearInterval(idTimer);
             timerScores.textContent = `00:00`;
-            if (game.player1.wins > game.player2.wins) {
+            if (player1Wins > player2Wins) {
                 titleWin.classList.remove('hide');
                 titleWin.textContent = `YOU'RE THE BEST !!!`;
-                createConfettiAnimationSchool();
+                createConfettiAnimationFireworks();
                 btnNewGame.classList.add('hide');
                 btnResetGame.textContent = 'New Match';
                 buttons.classList.add('hide');
@@ -152,10 +162,10 @@ btnLevelThree.addEventListener('click', () => {
                         resetGame();
                     }
                 });
-            } else if (game.player1.wins < game.player2.wins) {
+            } else if (player1Wins < player2Wins) {
                 titleWin.classList.remove('hide');
                 titleWin.textContent = `YOU'RE LOOSER !!!`;
-                createConfettiAnimationSchool();
+                createConfettiAnimationFireworks();
                 btnNewGame.classList.add('hide');
                 btnResetGame.textContent = 'New Match';
                 buttons.classList.add('hide');
@@ -182,8 +192,7 @@ btnLevelThree.addEventListener('click', () => {
             let seconds = parseInt(time % 60);
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
-            //timerScores.textContent = `?? : ??`;
-            timerScores.textContent = `${minutes} : ${seconds}`;
+            timerScores.textContent = `?? : ??`;
         }
     };
 
@@ -193,7 +202,7 @@ btnLevelThree.addEventListener('click', () => {
         btn.style.borderColor = '#32415b';
     });
 
-    levelScores.textContent = `level: ${game.level + 2}`;
+    levelScores.textContent = `level: ${level + 2}`;
 });
 
 const randomNumbers = () => {
@@ -204,27 +213,27 @@ const randomNumbers = () => {
 
     if (randomNumber !== 1 && randomNumber2 !== 1) {
         if (boardPlayerOne.classList.contains('active')) {
-            game.player1.currentScores += randomNumber + randomNumber2;
-            currentScoreOne.textContent = game.player1.currentScores;
+            player1CurrentScore += randomNumber + randomNumber2;
+            currentScoreOne.textContent = player1CurrentScore;
         } else if (boardPlayerTwo.classList.contains('active')) {
-            game.player2.currentScores += randomNumber + randomNumber2;
-            currentScoreTwo.textContent = game.player2.currentScores;
+            player2CurrentScore += randomNumber + randomNumber2;
+            currentScoreTwo.textContent = player2CurrentScore;
         }
     } else if (randomNumber === 1 || randomNumber2 === 1) {
         if (boardPlayerOne.classList.contains('active')) {
             currentScoreOne.textContent = 0;
-            game.player1.currentScores = 0;
-            game.player1.totalScores += 0;
-            scoreOne.textContent = game.player1.totalScores;
-            let percentageScore = (220 * game.player1.totalScores) / 100;
+            player1CurrentScore = 0;
+            player1TotalScore += 0;
+            scoreOne.textContent = player1TotalScore;
+            let percentageScore = (220 * player1TotalScore) / 100;
             progressBarLoaderPlayerOne.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
             setActivePlayer();
         } else if (boardPlayerTwo.classList.contains('active')) {
             currentScoreTwo.textContent = 0;
-            game.player2.currentScores = 0;
-            game.player2.totalScores += 0;
-            scoreTwo.textContent = game.player2.totalScores;
-            let percentageScore = (220 * game.player2.totalScores) / 100;
+            player2CurrentScore = 0;
+            player2TotalScore += 0;
+            scoreTwo.textContent = player2TotalScore;
+            let percentageScore = (220 * player2TotalScore) / 100;
             progressBarLoaderPlayerTwo.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
             setActivePlayer();
         }
@@ -232,30 +241,30 @@ const randomNumbers = () => {
 };
 
 const holdScore = () => {
-    game.player1.totalScores += game.player1.currentScores;
-    game.player2.totalScores += game.player2.currentScores;
-    scoreOne.textContent = game.player1.totalScores;
-    scoreTwo.textContent = game.player2.totalScores;
-    game.player1.currentScores = 0;
-    game.player2.currentScores = 0;
+    player1TotalScore += player1CurrentScore;
+    player2TotalScore += player2CurrentScore;
+    scoreOne.textContent = player1TotalScore;
+    scoreTwo.textContent = player2TotalScore;
+    player1CurrentScore = 0;
+    player2CurrentScore = 0;
     currentScoreOne.textContent = 0;
     currentScoreTwo.textContent = 0;
-    let percentageScorePlayer1 = (220 * game.player1.totalScores) / 100;
+    let percentageScorePlayer1 = (220 * player1TotalScore) / 100;
     progressBarLoaderPlayerOne.style.width = `${percentageScorePlayer1 <= 220 ? percentageScorePlayer1 : 218}px`;
-    let percentageScorePlayer2 = (220 * game.player2.totalScores) / 100;
+    let percentageScorePlayer2 = (220 * player2TotalScore) / 100;
     progressBarLoaderPlayerTwo.style.width = `${percentageScorePlayer2 <= 220 ? percentageScorePlayer2 : 218}px`;
-    if (game.player1.totalScores >= 100) {
+    if (player1TotalScore >= 100) {
         createConfettiAnimationBasic();
         titleWin.classList.remove('hide');
         titleWin.textContent = 'YOU WIN!!!';
-        game.player1.wins += 1;
-        winsScores.textContent = `wins: ${game.player1.wins}`;
+        player1Wins += 1;
+        winsScores.textContent = `wins: ${player1Wins}`;
         btnNewGame.classList.remove('hide');
         buttons.classList.add('hide');
-        if (game.player1.wins >= 10) {
+        if (player1Wins >= 10) {
             titleWin.classList.remove('hide');
             titleWin.textContent = `YOU'RE THE BEST !!!`;
-            createConfettiAnimationSchool();
+            createConfettiAnimationFireworks();
             btnNewGame.classList.add('hide');
             btnResetGame.textContent = 'New Match';
             buttons.classList.add('hide');
@@ -265,18 +274,18 @@ const holdScore = () => {
                 }
             });
         }
-    } else if (game.player2.totalScores >= 100) {
+    } else if (player2TotalScore >= 100) {
         createConfettiAnimationBasic();
         titleWin.classList.remove('hide');
         titleWin.textContent = 'YOU LOST!!!';
-        game.player2.wins += 1;
-        lossesScores.textContent = `losses: ${game.player2.wins}`;
+        player2Wins += 1;
+        lossesScores.textContent = `losses: ${player2Wins}`;
         btnNewGame.classList.remove('hide');
         buttons.classList.add('hide');
-        if (game.player2.wins >= 10) {
+        if (player2Wins >= 10) {
             titleWin.classList.remove('hide');
             titleWin.textContent = `YOU'RE LOOSER !!!`;
-            createConfettiAnimationSchool();
+            createConfettiAnimationFireworks();
             btnNewGame.classList.add('hide');
             btnResetGame.textContent = 'New Match';
             buttons.classList.add('hide');
@@ -288,7 +297,7 @@ const holdScore = () => {
         }
     }
 
-    if (game.player1.wins > 0 || game.player2.wins > 0) {
+    if (player1Wins > 0 || player2Wins > 0) {
         btnsLevels.forEach(btn => {
             btn.setAttribute('disabled', true);
             btn.style.borderColor = '#32415b';
@@ -299,7 +308,7 @@ const holdScore = () => {
     }
 };
 
-const createConfettiAnimationSchool = () => {
+const createConfettiAnimationFireworks = () => {
     const canvas = document.createElement('canvas');
     document.body.appendChild(canvas);
     const duration = 15 * 1000;
@@ -387,8 +396,8 @@ const startNewGame = () => {
     btnNewGame.classList.add('hide');
     buttons.classList.remove('hide');
     buttons.classList.remove('hide');
-    game.player1.totalScores = 0;
-    game.player2.totalScores = 0;
+    player1TotalScore = 0;
+    player2TotalScore = 0;
     currentScoreOne.textContent = 0;
     currentScoreTwo.textContent = 0;
     scoreOne.textContent = 0;
