@@ -1,5 +1,6 @@
 import '../scss/main.scss';
 import confetti from 'canvas-confetti';
+import randomTime from './helpers/randomTime';
 const panelScores = document.querySelector('.panel--js');
 const panelScoresBtn = document.querySelector('.panel__btn--js');
 const panelLevels = document.querySelector('.levels--js');
@@ -54,9 +55,7 @@ const btnsLevels = document.querySelectorAll('.levels__btn--js');
 const game = {
     level: 1,
     time: 6 * 5,
-    getRandomTime(min, max) {
-        return Math.trunc(Math.random() * (max - min + 1) + min);
-    },
+    randomTime,
     player1: {
         totalScore: 0,
         currentScore: 0,
@@ -145,7 +144,7 @@ btnLevelThree.addEventListener('click', () => {
     btnLevelOne.classList.remove('levels__btn--active');
     btnLevelTwo.classList.remove('levels__btn--active');
     btnLevelThree.classList.add('levels__btn--active');
-    let randomTime = game.getRandomTime(60, 120);
+    let randomTime = game.randomTime(60, 120);
     const countDown = () => {
         if (randomTime <= 0) {
             clearInterval(idTimer);
