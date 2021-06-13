@@ -77,17 +77,21 @@ let time = game.time,
     player1CurrentScore = game.player1.currentScore,
     player2CurrentScore = game.player2.currentScore;
 
+const keyboardShortcutsResetGame = () => {
+    window.addEventListener('keyup', e => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+            resetGame();
+        }
+    });
+};
+
 const newGameContent = info => {
     titleWin.classList.remove('hide');
     titleWin.textContent = `${info}`;
     btnNewGame.classList.add('hide');
     btnResetGame.textContent = 'New Match';
     buttons.classList.add('hide');
-    window.addEventListener('keyup', e => {
-        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-            resetGame();
-        }
-    });
+    keyboardShortcutsResetGame();
 };
 
 btnLevelTwo.addEventListener('click', () => {
@@ -233,11 +237,7 @@ const holdScore = () => {
             btnNewGame.classList.add('hide');
             btnResetGame.textContent = 'New Match';
             buttons.classList.add('hide');
-            window.addEventListener('keyup', e => {
-                if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-                    resetGame();
-                }
-            });
+            keyboardShortcutsResetGame();
         }
     } else if (player2TotalScore >= 100) {
         createConfettiAnimationBasic();
@@ -254,11 +254,7 @@ const holdScore = () => {
             btnNewGame.classList.add('hide');
             btnResetGame.textContent = 'New Match';
             buttons.classList.add('hide');
-            window.addEventListener('keyup', e => {
-                if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-                    resetGame();
-                }
-            });
+            keyboardShortcutsResetGame();
         }
     }
 
