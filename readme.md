@@ -1,18 +1,73 @@
-![cover](https://cotenfrontend.pl/img/cover.png)
-
-# WTF Webpack Starter Kit 
-
-Simple toolkit for your static websites development.
+# THE PIG GAME
 
 ## How to use it?
+## About project
+A very simple game based on pure JS.
 
-Click on `Use this template` button to generate a new repository based on this starter kit. After that clone it to your computer, go to the project directory in console and type `npm install`.
+## Screenshot
+![Screenshot](an address url to the image file)
 
-## Available scripts
+## Demo version
+Click here  -> [DEMO](demo url)
 
-`npm run start` - runs development mode
+## Setup
 
-`npm run build` - runs build process for production
+  ### Clone project
+  ```bash
+  git clone https://github.com/KrzysztofGrudzien/pig-game
+  ```
+  ### Install project
+  ```bash
+  npm install
+  ```
+  ### Start project on your local computer using development mode
+  ```bash
+  npm run start
+  ```
+  ### Build production version
+  ```bash
+  npm run build
+  ```
+  ### Build production version and publish the page using `gh-pages` branch
+```bash
+npm run publish
+```
+## Usage
+For fun !!!
 
-`npm run publish` - runs build process and publish the page using `gh-pages` branch
+## Technologies Used
+- JavaScript
+- Webpack 4
+- HTML5
+- CSS
+- SASS
+- BEM Methodology
+
+## Design tools
+- Adobe XD
+
+## Additional libraries
+[canvas confetti](https://www.npmjs.com/package/canvas-confetti)
+
+## Project status 
+In progress 🎉
+
+## Rules
+
+I. You have to login to the game writing your name or nick name and click ENTER 
+a) If input form will be empty you will be login as 'Unknow' 
+
+to be continued ...
+
+
+
+## Video
+![How it works](an address url to video or gif file)
+
+## License
+No license
+
+## Contact
+Created by [Krzysztof Grudzień](http://criscode.eu) - feel free to contact me!
+
 
