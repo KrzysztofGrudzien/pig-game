@@ -54,7 +54,7 @@ const btnsLevels = document.querySelectorAll('.levels__btn--js');
 
 const game = {
     level: 1,
-    time: 60 * 5,
+    time: 120 * 5,
     randomTime,
     player1: {
         totalScore: 0,
@@ -89,14 +89,14 @@ btnLevelTwo.addEventListener('click', () => {
             if (player1Wins > player2Wins) {
                 let info = `YOU'RE THE BEST !!!`;
                 createConfettiAnimationFireworks();
-                newGameContent(info);
+                newMatchContent(info);
             } else if (player1Wins < player2Wins) {
                 let info = `YOU'RE LOOSER !!!`;
                 createConfettiAnimationFireworks();
-                newGameContent(info);
+                newMatchContent(info);
             } else {
                 let info = `YOU DRAW !!!`;
-                newGameContent(info);
+                newMatchContent(info);
             }
         } else {
             let timeGame = time--;
