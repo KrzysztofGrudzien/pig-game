@@ -174,7 +174,7 @@ btnLevelThree.addEventListener('click', () => {
     levelScores.textContent = `level: ${level + 2}`;
 });
 
-const randomNumbers = () => {
+const getRandomNumbers = () => {
     const randomNumber = Math.trunc(Math.random() * 6) + 1;
     const randomNumber2 = Math.trunc(Math.random() * 6) + 1;
     cubeImgOne.src = `src/assets/icons/${randomNumber}.png`;
@@ -196,7 +196,7 @@ const randomNumbers = () => {
             scoreOne.textContent = player1TotalScore;
             let percentageScore = (220 * player1TotalScore) / 100;
             progressBarLoaderPlayerOne.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
-            setActivePlayer();
+            setUpActivePlayer();
         } else if (boardPlayerTwo.classList.contains('active')) {
             currentScoreTwo.textContent = 0;
             player2CurrentScore = 0;
@@ -204,12 +204,12 @@ const randomNumbers = () => {
             scoreTwo.textContent = player2TotalScore;
             let percentageScore = (220 * player2TotalScore) / 100;
             progressBarLoaderPlayerTwo.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
-            setActivePlayer();
+            setUpActivePlayer();
         }
     }
 };
 
-const holdScore = () => {
+const holdActiveScore = () => {
     player1TotalScore += player1CurrentScore;
     player2TotalScore += player2CurrentScore;
     scoreOne.textContent = player1TotalScore;
@@ -336,11 +336,11 @@ const createConfettiAnimationBasic = () => {
     });
 };
 
-const openPanelScores = () => {
+const toggleOpenPanelScores = () => {
     panelScores.classList.toggle('panel--hide');
 };
 
-const openPanelLevels = () => {
+const toggleOpenPanelLevels = () => {
     panelLevels.classList.toggle('levels--hide');
 };
 
@@ -366,54 +366,62 @@ const resetGame = () => {
 
 btnResetGame.addEventListener('click', resetGame);
 btnNewGame.addEventListener('click', startNewGame);
-btnPanelScores.addEventListener('click', openPanelScores);
-btnPanelLevels.addEventListener('click', openPanelLevels);
+btnPanelScores.addEventListener('click', toggleOpenPanelScores);
+btnPanelLevels.addEventListener('click', toggleOpenPanelLevels);
 
-const logIn = () => {
-    if (loginPanelInput.value !== '') {
-        loginPanelOverlay.remove();
-        userNameText.textContent = `Welcome, ${loginPanelInput.value}`;
-        loginPlayerOne.textContent = `${loginPanelInput.value}`;
-    } else {
+const fillUpUserLogin = isEmpty => {
+    if (isEmpty === true) {
         loginPanelOverlay.remove();
         userNameText.textContent = 'Welcome, unknow';
         loginPlayerOne.textContent = 'unknow';
+    } else {
+        loginPanelOverlay.remove();
+        userNameText.textContent = `Welcome, ${loginPanelInput.value}`;
+        loginPlayerOne.textContent = `${loginPanelInput.value}`;
+    }
+};
+
+const logInUser = () => {
+    if (loginPanelInput.value !== '') {
+        fillUpUserLogin(false);
+    } else {
+        fillUpUserLogin(true);
     }
 };
 
 loginPanelInput.addEventListener('keyup', e => {
     if (e.key === 'Enter' || e.key === 'Escape') {
-        logIn();
+        logInUser();
     }
 });
 
 window.addEventListener('keyup', e => {
     if (e.key === 'Enter') {
-        logIn();
+        logInUser();
         startNewGame();
     }
 });
 
 window.addEventListener('keyup', e => {
     if (e.key === 'ArrowUp') {
-        randomNumbers();
+        getRandomNumbers();
     }
 });
 
 window.addEventListener('keyup', e => {
     if (e.key === 'ArrowDown') {
-        holdScore();
-        setActivePlayer();
+        holdActiveScore();
+        setUpActivePlayer();
     }
 });
 
-btnPanelLogin.addEventListener('click', logIn);
+btnPanelLogin.addEventListener('click', logInUser);
 
-btnRandomNumbers.addEventListener('click', randomNumbers);
+btnRandomNumbers.addEventListener('click', getRandomNumbers);
 
-btnHoldScore.addEventListener('click', holdScore);
+btnHoldScore.addEventListener('click', holdActiveScore);
 
-const setActivePlayer = () => {
+const setUpActivePlayer = () => {
     scoreOne.classList.toggle('player--active');
     scoreTwo.classList.toggle('player--active');
     boardPlayerOne.classList.toggle('active');
@@ -438,4 +446,4 @@ const setActivePlayer = () => {
     currentScorePlayerTwo.classList.toggle('player--active');
 };
 
-holdBtn.addEventListener('click', setActivePlayer);
+btnHoldScore.addEventListener('click', setUpActivePlayer);
