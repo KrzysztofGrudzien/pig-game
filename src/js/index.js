@@ -77,23 +77,6 @@ let time = game.time,
     player1CurrentScore = game.player1.currentScore,
     player2CurrentScore = game.player2.currentScore;
 
-const keyboardShortcutsResetGame = () => {
-    window.addEventListener('keyup', e => {
-        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
-            resetGame();
-        }
-    });
-};
-
-const newMatchContent = info => {
-    titleWin.classList.remove('hide');
-    titleWin.textContent = `${info}`;
-    btnNewGame.classList.add('hide');
-    btnResetGame.textContent = 'New Match';
-    btnsWrapper.classList.add('hide');
-    keyboardShortcutsResetGame();
-};
-
 btnLevelTwo.addEventListener('click', () => {
     btnLevelOne.classList.remove('levels__btn--active');
     btnLevelTwo.classList.add('levels__btn--active');
@@ -174,37 +157,61 @@ btnLevelThree.addEventListener('click', () => {
     levelScores.textContent = `level: ${level + 2}`;
 });
 
+const toggleOpenPanelScores = () => {
+    panelScores.classList.toggle('panel--hide');
+};
+
+const toggleOpenPanelLevels = () => {
+    panelLevels.classList.toggle('levels--hide');
+};
+
+const updateBoardScores = player => {
+    if (player === 'player1') {
+        currentScoreOne.textContent = 0;
+        player1CurrentScore = 0;
+        player1TotalScore += 0;
+        scoreOne.textContent = player1TotalScore;
+        let percentageScore = (220 * player1TotalScore) / 100;
+        progressBarLoaderPlayerOne.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
+        setUpActivePlayer();
+    } else {
+        currentScoreTwo.textContent = 0;
+        player2CurrentScore = 0;
+        player2TotalScore += 0;
+        scoreTwo.textContent = player2TotalScore;
+        let percentageScore = (220 * player2TotalScore) / 100;
+        progressBarLoaderPlayerTwo.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
+        setUpActivePlayer();
+    }
+};
+
 const getRandomNumbers = () => {
     const randomNumber = Math.trunc(Math.random() * 6) + 1;
     const randomNumber2 = Math.trunc(Math.random() * 6) + 1;
     cubeImgOne.src = `src/assets/icons/${randomNumber}.png`;
     cubeImgTwo.src = `src/assets/icons/${randomNumber2}.png`;
 
-    if (randomNumber !== 1 && randomNumber2 !== 1) {
-        if (boardPlayerOne.classList.contains('active')) {
+    const getCurrentScore = currentPlayer => {
+        if (currentPlayer === 'player1') {
             player1CurrentScore += randomNumber + randomNumber2;
             currentScoreOne.textContent = player1CurrentScore;
-        } else if (boardPlayerTwo.classList.contains('active')) {
+        } else {
             player2CurrentScore += randomNumber + randomNumber2;
             currentScoreTwo.textContent = player2CurrentScore;
         }
+    };
+
+    if (randomNumber !== 1 && randomNumber2 !== 1) {
+        if (boardPlayerOne.classList.contains('active')) {
+            getCurrentScore('player1');
+        } else if (boardPlayerTwo.classList.contains('active')) {
+            getCurrentScore();
+        }
     } else if (randomNumber === 1 || randomNumber2 === 1) {
         if (boardPlayerOne.classList.contains('active')) {
-            currentScoreOne.textContent = 0;
-            player1CurrentScore = 0;
-            player1TotalScore += 0;
-            scoreOne.textContent = player1TotalScore;
-            let percentageScore = (220 * player1TotalScore) / 100;
-            progressBarLoaderPlayerOne.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
-            setUpActivePlayer();
+            updateBoardScores('player1');
         } else if (boardPlayerTwo.classList.contains('active')) {
-            currentScoreTwo.textContent = 0;
-            player2CurrentScore = 0;
-            player2TotalScore += 0;
-            scoreTwo.textContent = player2TotalScore;
-            let percentageScore = (220 * player2TotalScore) / 100;
-            progressBarLoaderPlayerTwo.style.width = `${percentageScore <= 220 ? percentageScore : 218}px`;
-            setUpActivePlayer();
+            updateBoardScores();
         }
     }
 };
@@ -336,14 +343,6 @@ const createConfettiAnimationBasic = () => {
     });
 };
 
-const toggleOpenPanelScores = () => {
-    panelScores.classList.toggle('panel--hide');
-};
-
-const toggleOpenPanelLevels = () => {
-    panelLevels.classList.toggle('levels--hide');
-};
-
 const startNewGame = () => {
     titleWin.classList.add('hide');
     btnNewGame.classList.add('hide');
@@ -358,6 +357,23 @@ const startNewGame = () => {
     progressBarLoaderPlayerTwo.style.width = '0px';
     cubeImgOne.src = `src/assets/icons/${0}.png`;
     cubeImgTwo.src = `src/assets/icons/${0}.png`;
+};
+
+const keyboardShortcutsResetGame = () => {
+    window.addEventListener('keyup', e => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+            resetGame();
+        }
+    });
+};
+
+const newMatchContent = info => {
+    titleWin.classList.remove('hide');
+    titleWin.textContent = `${info}`;
+    btnNewGame.classList.add('hide');
+    btnResetGame.textContent = 'New Match';
+    btnsWrapper.classList.add('hide');
+    keyboardShortcutsResetGame();
 };
 
 const resetGame = () => {
