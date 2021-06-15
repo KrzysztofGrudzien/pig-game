@@ -2,15 +2,15 @@ import '../scss/main.scss';
 import confetti from 'canvas-confetti';
 import randomTime from './helpers/randomTime';
 const panelScores = document.querySelector('.panel--js');
-const panelScoresBtn = document.querySelector('.panel__btn--js');
+const btnPanelScores = document.querySelector('.panel__btn--js');
 const panelLevels = document.querySelector('.levels--js');
-const panelLevelsBtn = document.querySelector('.levels__text--js');
+const btnPanelLevels = document.querySelector('.levels__text--js');
 const loginPanelOverlay = document.querySelector('.login-panel-overlay-bg--js');
-const loginPanelBtn = document.querySelector('.login-panel__btn--js');
+const btnPanelLogin = document.querySelector('.login-panel__btn--js');
 const loginPanelInput = document.querySelector('.login-panel__input--js');
 const userNameText = document.querySelector('.header__login--js');
-const randomNumbersBtn = document.querySelector('.btn--one--js');
-const holdBtn = document.querySelector('.btn--two--js');
+const btnRandomNumbers = document.querySelector('.btn--one--js');
+const btnHoldScore = document.querySelector('.btn--two--js');
 const cubeImgOne = document.querySelector('.cube__img--one--js');
 const cubeImgTwo = document.querySelector('.cube__img--two--js');
 const scoreOne = document.querySelector('.game__score--one--js');
@@ -41,10 +41,10 @@ const progressBarLoaderPlayerOne = document.querySelector('.progress__bar--loade
 const progressBarLoaderPlayerTwo = document.querySelector('.progress__bar--loader--two--js');
 const titleWin = document.querySelector('.win--js');
 const levelScores = document.querySelector('.scores__level--js');
-const winsScores = document.querySelector('.scores__wins--js');
+const winScores = document.querySelector('.scores__wins--js');
 const lossesScores = document.querySelector('.scores__losses--js');
 const btnNewGame = document.querySelector('.new-game--js');
-const buttons = document.querySelector('.buttons--js');
+const btnsWrapper = document.querySelector('.buttons--js');
 const btnResetGame = document.querySelector('.scores__btn--js');
 const timerScores = document.querySelector('.scores__timer--js');
 const btnLevelOne = document.querySelector('.levels__btn--one--js');
@@ -54,7 +54,7 @@ const btnsLevels = document.querySelectorAll('.levels__btn--js');
 
 const game = {
     level: 1,
-    time: 6 * 5,
+    time: 60 * 5,
     randomTime,
     player1: {
         totalScore: 0,
@@ -85,12 +85,12 @@ const keyboardShortcutsResetGame = () => {
     });
 };
 
-const newGameContent = info => {
+const newMatchContent = info => {
     titleWin.classList.remove('hide');
     titleWin.textContent = `${info}`;
     btnNewGame.classList.add('hide');
     btnResetGame.textContent = 'New Match';
-    buttons.classList.add('hide');
+    btnsWrapper.classList.add('hide');
     keyboardShortcutsResetGame();
 };
 
@@ -146,14 +146,14 @@ btnLevelThree.addEventListener('click', () => {
             if (player1Wins > player2Wins) {
                 let info = `YOU'RE THE BEST !!!`;
                 createConfettiAnimationFireworks();
-                newGameContent(info);
+                newMatchContent(info);
             } else if (player1Wins < player2Wins) {
                 let info = `YOU'RE LOOSER !!!`;
                 createConfettiAnimationFireworks();
-                newGameContent(info);
+                newMatchContent(info);
             } else {
                 let info = `YOU DRAW !!!`;
-                newGameContent(info);
+                newMatchContent(info);
             }
         } else {
             let time = randomTime--;
@@ -227,17 +227,13 @@ const holdScore = () => {
         titleWin.classList.remove('hide');
         titleWin.textContent = 'YOU WIN!!!';
         player1Wins += 1;
-        winsScores.textContent = `wins: ${player1Wins}`;
+        winScores.textContent = `wins: ${player1Wins}`;
         btnNewGame.classList.remove('hide');
-        buttons.classList.add('hide');
+        btnsWrapper.classList.add('hide');
         if (player1Wins >= 10) {
-            titleWin.classList.remove('hide');
-            titleWin.textContent = `YOU'RE THE BEST !!!`;
+            let info = `YOU'RE THE BEST !!!`;
             createConfettiAnimationFireworks();
-            btnNewGame.classList.add('hide');
-            btnResetGame.textContent = 'New Match';
-            buttons.classList.add('hide');
-            keyboardShortcutsResetGame();
+            newMatchContent(info);
         }
     } else if (player2TotalScore >= 100) {
         createConfettiAnimationBasic();
@@ -246,15 +242,11 @@ const holdScore = () => {
         player2Wins += 1;
         lossesScores.textContent = `losses: ${player2Wins}`;
         btnNewGame.classList.remove('hide');
-        buttons.classList.add('hide');
+        btnsWrapper.classList.add('hide');
         if (player2Wins >= 10) {
-            titleWin.classList.remove('hide');
-            titleWin.textContent = `YOU'RE LOOSER !!!`;
+            let info = `YOU'RE LOOSER !!!`;
             createConfettiAnimationFireworks();
-            btnNewGame.classList.add('hide');
-            btnResetGame.textContent = 'New Match';
-            buttons.classList.add('hide');
-            keyboardShortcutsResetGame();
+            newMatchContent(info);
         }
     }
 
@@ -280,7 +272,7 @@ const createConfettiAnimationFireworks = () => {
         return Math.random() * (max - min) + min;
     }
 
-    const interval = setInterval(function () {
+    const interval = setInterval(() => {
         const timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
@@ -355,8 +347,7 @@ const openPanelLevels = () => {
 const startNewGame = () => {
     titleWin.classList.add('hide');
     btnNewGame.classList.add('hide');
-    buttons.classList.remove('hide');
-    buttons.classList.remove('hide');
+    btnsWrapper.classList.remove('hide');
     player1TotalScore = 0;
     player2TotalScore = 0;
     currentScoreOne.textContent = 0;
@@ -375,8 +366,8 @@ const resetGame = () => {
 
 btnResetGame.addEventListener('click', resetGame);
 btnNewGame.addEventListener('click', startNewGame);
-panelScoresBtn.addEventListener('click', openPanelScores);
-panelLevelsBtn.addEventListener('click', openPanelLevels);
+btnPanelScores.addEventListener('click', openPanelScores);
+btnPanelLevels.addEventListener('click', openPanelLevels);
 
 const logIn = () => {
     if (loginPanelInput.value !== '') {
@@ -397,7 +388,7 @@ loginPanelInput.addEventListener('keyup', e => {
 });
 
 window.addEventListener('keyup', e => {
-    if (e.key === 'Enter' || e.key === 'Escape') {
+    if (e.key === 'Enter') {
         logIn();
         startNewGame();
     }
@@ -416,11 +407,11 @@ window.addEventListener('keyup', e => {
     }
 });
 
-loginPanelBtn.addEventListener('click', logIn);
+btnPanelLogin.addEventListener('click', logIn);
 
-randomNumbersBtn.addEventListener('click', randomNumbers);
+btnRandomNumbers.addEventListener('click', randomNumbers);
 
-holdBtn.addEventListener('click', holdScore);
+btnHoldScore.addEventListener('click', holdScore);
 
 const setActivePlayer = () => {
     scoreOne.classList.toggle('player--active');
