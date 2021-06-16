@@ -262,9 +262,6 @@ const holdActiveScore = () => {
             btn.setAttribute('disabled', true);
             btn.style.borderColor = '#32415b';
         });
-        btnLevelOne.classList.add('levels__btn--active');
-        btnLevelTwo.classList.remove('levels__btn--active');
-        btnLevelThree.classList.remove('levels__btn--active');
     }
 };
 
