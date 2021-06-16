@@ -188,8 +188,8 @@ const updateBoardScores = player => {
 const getRandomNumbers = () => {
     const randomNumber = Math.trunc(Math.random() * 6) + 1;
     const randomNumber2 = Math.trunc(Math.random() * 6) + 1;
-    cubeImgOne.src = `src/assets/icons/${randomNumber}.png`;
-    cubeImgTwo.src = `src/assets/icons/${randomNumber2}.png`;
+    cubeImgOne.src = `../assets/icons/${randomNumber}.png`;
+    cubeImgTwo.src = `../assets/icons/${randomNumber2}.png`;
 
     const getCurrentScore = currentPlayer => {
         if (currentPlayer === 'player1') {
