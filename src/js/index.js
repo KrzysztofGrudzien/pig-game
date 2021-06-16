@@ -120,7 +120,7 @@ btnLevelThree.addEventListener('click', () => {
     btnLevelOne.classList.remove('levels__btn--active');
     btnLevelTwo.classList.remove('levels__btn--active');
     btnLevelThree.classList.add('levels__btn--active');
-    let randomTime = game.randomTime(60, 120);
+    let randomTime = game.randomTime(300, 600);
 
     const countDown = () => {
         if (randomTime <= 0) {
