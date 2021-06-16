@@ -355,8 +355,8 @@ const startNewGame = () => {
     scoreTwo.textContent = 0;
     progressBarLoaderPlayerOne.style.width = '0px';
     progressBarLoaderPlayerTwo.style.width = '0px';
-    cubeImgOne.src = `src/assets/icons/${0}.png`;
-    cubeImgTwo.src = `src/assets/icons/${0}.png`;
+    cubeImgOne.src = `img/${0}.png`;
+    cubeImgTwo.src = `img/${0}.png`;
 };
 
 const keyboardShortcutsResetGame = () => {
