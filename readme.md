@@ -49,7 +49,7 @@ For fun !!!
 [canvas confetti](https://www.npmjs.com/package/canvas-confetti)
 
 ## Project status 
-In progress 🎉
+Done 🎉
 
 ## Rules
 
