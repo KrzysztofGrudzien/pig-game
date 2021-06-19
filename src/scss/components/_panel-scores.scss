@@ -5,6 +5,8 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    width: 90%;
+    z-index: 9;
 
     &__score {
         background-color: $color-magenta;
@@ -44,8 +46,19 @@
     justify-content: space-between;
     padding: 0 2rem;
 
+    @media (max-width: 850px) {
+        flex-direction: column;
+    }
+
     &__wrapper {
         display: flex;
+        @media (max-width: 850px) {
+            padding: 1rem;
+        }
+
+        @media (max-width: 520px) {
+            flex-direction: column;
+        }
     }
 
     &__btn {
@@ -58,6 +71,15 @@
         font-weight: 600;
         padding: 1rem 2rem;
         text-transform: uppercase;
+
+        @media (max-width: 850px) {
+            align-self: flex-end;
+        }
+
+        @media (max-width: 520px) {
+            padding: 1rem;
+            width: 100%;
+        }
     }
 
     &__level,
@@ -68,10 +90,15 @@
         font-size: 2.4rem;
         padding: 0 2rem;
         text-transform: uppercase;
+
+        @media (max-width: 520px) {
+            padding: 0.5rem 0;
+        }
     }
 
     &__timer {
         font-weight: 300;
         font-size: 4rem;
+        min-height: 5.7rem;
     }
 }
