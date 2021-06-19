@@ -9,7 +9,13 @@
 .panel {
     transition: margin-top 0.2s ease-out;
     &--hide {
-        margin-top: -6.7rem;
+        margin-top: -7.7rem;
+        @media (max-width: 850px) {
+            margin-top: -16.7rem;
+        }
+        @media (max-width: 520px) {
+            margin-top: -25.2rem;
+        }
     }
 }
 
