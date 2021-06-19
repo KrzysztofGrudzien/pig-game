@@ -11,6 +11,10 @@
         font-size: 2rem;
         padding-right: 0.5em;
         width: 100%;
+
+        @media (max-width: 660px) {
+            display: none;
+        }
     }
 
     &__title {
@@ -21,6 +25,10 @@
         text-align: center;
         text-transform: uppercase;
         width: 100%;
+
+        @media (max-width: 660px) {
+            align-self: center;
+        }
     }
 
     .nav {

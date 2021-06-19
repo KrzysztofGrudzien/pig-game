@@ -6,15 +6,26 @@
     overflow: hidden;
     position: relative;
     width: 90%;
+
+    @media (max-width: 1200px) {
+        flex-direction: column;
+    }
 }
 
 .player {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     text-align: center;
     transition: background-color 0.4s ease-out;
     width: 50%;
+
+    @media (max-width: 1200px) {
+        padding: 3rem;
+    }
+
+    @media (max-width: 1200px) {
+        width: 100%;
+    }
 
     &--active {
         transition: background-color 0.4s ease-out;
@@ -27,7 +38,12 @@
         font-size: 4rem;
         font-weight: 300;
         letter-spacing: 2px;
+        padding: 5rem 0;
         text-transform: uppercase;
+
+        @media (max-width: 660px) {
+            padding: 2rem 0;
+        }
     }
 
     &__login {
@@ -55,12 +71,41 @@
     display: flex;
     justify-content: center;
     position: relative;
+    padding: 5rem 0;
+
+    @media (max-width: 660px) {
+        padding: 2rem 0;
+    }
 
     &__score {
         &--one,
         &--two {
             font-size: 14rem;
             font-weight: 100;
+
+            @media (max-width: 660px) {
+                font-size: 10rem;
+            }
+        }
+    }
+
+    &--one {
+        @media (max-width: 1784px) {
+            margin-left: -23rem;
+        }
+
+        @media (max-width: 1280px) {
+            margin-left: 0;
+        }
+    }
+
+    &--two {
+        @media (max-width: 1784px) {
+            margin-right: -23rem;
+        }
+
+        @media (max-width: 1280px) {
+            margin-right: 0;
         }
     }
 }
@@ -69,6 +114,11 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
+    padding: 5rem 0;
+
+    @media (max-width: 660px) {
+        padding: 2rem 0;
+    }
 
     &__bar {
         background-color: $color-white;
@@ -101,6 +151,7 @@
     font-size: 2rem;
     justify-content: center;
     height: 15rem;
+    margin: 3rem 0;
     width: 15rem;
 
     &__score {
@@ -110,6 +161,12 @@
     &--active {
         border: 1px solid $color-white;
     }
+
+    @media (max-width: 660px) {
+        height: 12rem;
+        margin: 3rem 0;
+        width: 12rem;
+    }
 }
 
 .cubes {
@@ -118,11 +175,21 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
+    @media (max-width: 1280px) {
+        flex-direction: column;
+        transform: translate(-50%, -70%);
+    }
+
+    @media (max-width: 1200px) {
+        transform: none;
+        right: -10rem;
+        top: 0;
+    }
 }
 
 .cube {
     align-self: center;
-
     background-color: $color-white;
     box-shadow: 0 0 3rem 0 rgba(0, 0, 0, 0.2);
     display: flex;
@@ -130,6 +197,28 @@
     justify-content: center;
     margin: 2rem;
     width: 22rem;
+
+    &--one,
+    &--two {
+        @media (max-width: 1000px) {
+            height: 18rem;
+            width: 18rem;
+        }
+
+        @media (max-width: 850px) {
+            height: 12rem;
+            width: 12rem;
+        }
+    }
+
+    &__img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    @media (max-width: 700px) {
+        display: none;
+    }
 }
 
 .win {
@@ -141,6 +230,8 @@
     top: 27%;
     transform: translate(-50%, -50%);
     text-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.35);
+    text-align: center;
+    width: 100%;
 }
 
 .new-game {
@@ -152,7 +243,7 @@
     display: flex;
     font-size: 2.4rem;
     font-weight: 300;
-    left: 54%;
+    left: 50%;
     position: absolute;
     top: 17%;
     transform: translate(-50%, -50%);
@@ -166,6 +257,9 @@
         height: 4rem;
         line-height: 4rem;
         margin-right: 1rem;
+        position: absolute;
+        top: -5rem;
+        left: 4.5rem;
         text-align: center;
         width: 4rem;
     }

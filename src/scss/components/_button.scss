@@ -3,6 +3,13 @@
     left: 50%;
     top: 95%;
     transform: translate(-50%, -95%);
+
+    @media (max-width: 1200px) {
+        display: flex;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .btn {
@@ -17,6 +24,10 @@
     height: 7.3rem;
     margin: 1rem 0;
     width: 7.3rem;
+
+    @media (max-width: 1200px) {
+        margin: 1rem;
+    }
 
     &__image {
         height: 60%;
